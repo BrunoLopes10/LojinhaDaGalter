@@ -45,17 +45,87 @@ header{
     justify-content: space-between;
     padding: 20px 0;
 }
+#menu{
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--bg-color);
+    display: none;
+}
 .logo{
     font-size:  1.1rem;
     color: var(--bg-color);
     font-weight: 400;
 }
+.navbar{
+display: flex;
+align-items: center;
+column-gap: 1rem;
+}
+.nav-link{
+    font-size: 1rem;
+    color: var(--bg-color);
+    font-weight: 600;
+}
 #carrinho{
+position: relative;
 font-size: 1.8rem;
 cursor: pointer;
 color: var(--bg-color);
 }
+#carrinho[data-quantity="0"]::after{
+    content: "";
+}
+#carrinho[data-quantity]::after{
+    content: attr(data-quantity);
+    position: absolute;
+    top: 0;
+    right: -11px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--bg-color);
+    border-radius: 50%;
+    color: var(--text-color);
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*
+.home{
+    position: relative;
+    background: var(--bg-color);
+    min-height: 150px;
+}
 
+.home-img{
+    width: 100%;    
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.home-img img{
+    max-width: 700px;
+    width: 100%;
+    
+}
+
+.home-img::before{
+    content: "Crochê";
+    font-size: 9rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    position: absolute;
+    text-align: center;
+    top: 28px;
+    color: var(--text-color);
+    z-index: -1;
+}
+    */
 /*Carrinho*/
 .cart{
  position:  fixed;
@@ -155,6 +225,7 @@ color: var(--bg-color);
     text-align: center;
     margin-bottom:  1.5rem;
 }
+
 .shop{
     margin-top: 2rem;
 }
@@ -216,6 +287,7 @@ margin-bottom: 0.5rem;
     .shop{
       margin-top: 2rem !important;
     }
+    
 }
 @media (max-width:400px){
 .nav{
