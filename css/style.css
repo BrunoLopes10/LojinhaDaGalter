@@ -1,3 +1,4 @@
+/* Google Fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
 *{
   font-family: 'Poppins', sans-serif;
@@ -28,8 +29,10 @@ body{
 section{
     padding: 4rem 0 3rem;
 }
+
+/*Header*/
 header{
-    position: 0;
+    position: fixed;
     top: 0;
     width: 100%;
     background: var(--bg-color);
@@ -51,10 +54,12 @@ header{
 font-size: 1.8rem;
 cursor: pointer;
 }
+
+/*Carrinho*/
 .cart{
  position:  fixed;
  top: 0;
- right: 0%;
+ right: -100%;
  width: 360px;
  min-height: 100vh;
  padding: 20px;
@@ -152,6 +157,8 @@ cursor: pointer;
 .shop{
     margin-top: 2rem;
 }
+
+/*Produtos*/
 .shop-content{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(220px,auto));
@@ -179,7 +186,7 @@ margin-bottom: 0.5rem;
 .price{
     font-weight: 500;
 }
-.bx-cart{
+.add-carrinho{
     position: absolute;
     bottom: 0;
     right: 0;
@@ -188,6 +195,42 @@ margin-bottom: 0.5rem;
     padding: 10px;
     cursor: pointer;
 }
-.add-cart:hover{
+.add-carrinho:hover{
     background: hs1(249,32%,17);
+}
+
+/*Responsividade do Site*/
+@media (max-width:1080px){
+    .nav{
+        padding: 15px;
+    }
+    section{
+        padding: 3rem 0 2rem;
+    }
+    .container{
+        margin: 0 auto;
+        width: 90%;
+    }
+    .shop{
+      margin-top: 2rem !important;
+    }
+}
+@media (max-width:400px){
+.nav{
+    padding: 11px;
+}
+.logo{
+    font-size: 1rem;
+}
+.cart{
+    width: 320px;
+}
+}
+@media (max-width:360px){
+.shop{
+    margin-top: 1rem !important;
+}
+.cart{
+    width: 280px;
+}
 }
