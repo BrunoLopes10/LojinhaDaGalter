@@ -214,6 +214,7 @@ transition: 0.4s;
 width: 100%;
 height: auto;
 margin-bottom: 0.5rem;
+object-fit: contain;
 }
 .product-title{
     font-size: 1.1rem;
@@ -255,7 +256,48 @@ margin-bottom: 0.5rem;
     }
     
 }
+
+@media (max-width: 768px) {
+    #menu {
+        display: block; /* Mostra o ícone de menu */
+    }
+
+    .navbar {
+        display: none; /* Esconde a barra de navegação padrão */
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        top: 50px; /* Ajuste para alinhar com o cabeçalho */
+        left: 0;
+        background-color: white;
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        animation: fadeInOut 3s forwards;
+    }
+
+    .navbar.active {
+        display: flex; /* Mostra a barra de navegação ao clicar no ícone */
+        background-color: purple;
+    }
+    .navbar a {
+        padding: 10px 20px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        color: var(--text-color);
+    }
+
+    .navbar a:last-child {
+        border-bottom: none; /* Remove a borda do último item */
+    }
+
+    #menu {
+        display: block; /* Mostra o ícone do menu */
+    }
+}
+
 @media (max-width:400px){
+
 .nav{
     padding: 11px;
 }
@@ -305,10 +347,10 @@ a:-webkit-any-link {
 }
 .purchase-feedback {
     position: fixed;
-    top: 20px;
+    top: 50px;
     right: 20px;
     background-color: #4caf50;
-    color: white;
+    color: var(--bg-color);
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 16px;
@@ -321,4 +363,32 @@ a:-webkit-any-link {
     0% { opacity: 1; }
     90% { opacity: 1; }
     100% { opacity: 0; transform: translateY(-20px); }
+}
+.feedback-message {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    background-color: #ff4747;
+    color: var(--bg-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    z-index: 1000;
+    animation: fadeInOut 3s;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    10%, 90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 }

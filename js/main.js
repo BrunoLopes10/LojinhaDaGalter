@@ -82,12 +82,6 @@ function addCartClicked(event) {
     addProductToCart(title, price, productImg);
     updatetotal();
 
-    // Destaque o carrinho
-    var cart = document.querySelector('.cart');
-    cart.classList.add('active');
-    setTimeout(() => {
-        cart.classList.remove('active');
-    }, 500); // Remova o destaque após 0.5 segundos
 }
 
 
@@ -99,7 +93,7 @@ function addProductToCart(title, price, productImg){
     var cartItemsNames = cartItems.getElementsByClassName('cart-product-title');
     for (var i = 0; i < cartItemsNames.length; i++){
         if (cartItemsNames[i].innerText == title){
-        alert('Esse produto já foi adicionado ao carrinho');
+        showFeedbackMessage('Esse produto já foi adicionado ao carrinho !');
         return;
 
     }
@@ -109,12 +103,6 @@ function addProductToCart(title, price, productImg){
 var button = event.target; 
     button.textContent = "Adicionado !";
     button.disabled = true;
-
-    //após 5 segundos o botão volta para adicionar ao carrinho
-    setTimeout(() => {
-        button.textContent = "Adicionar ao Carrinho";
-        button.disabled = false; 
-    }, 3000);
 
 var cartBoxContent = `
                     <img src="${productImg}" alt="" class="cart-img">  
@@ -132,6 +120,27 @@ var cartBoxContent = `
                     .addEventListener('click', removeCartItem);
                     cartShopBox.getElementsByClassName('cart-quantity')[0]
                     .addEventListener('change', quantityChanged);
+
+                    // Destaque o carrinho
+    var cart = document.querySelector('.cart');
+    cart.classList.add('active');
+    setTimeout(() => {
+        cart.classList.remove('active');
+    }, 500); // Remova o destaque após 0.5 segundos
+                    updatetotal();
+}
+
+// Função para exibir mensagens de feedback
+function showFeedbackMessage(message) {
+    var feedback = document.createElement('div');
+    feedback.className = 'feedback-message';
+    feedback.innerText = message;
+    document.body.appendChild(feedback);
+
+    // Remover a mensagem após 3 segundos
+    setTimeout(() => {
+        feedback.remove();
+    }, 3000);
 }
 //Atualização Total
 function updatetotal(){
@@ -171,3 +180,10 @@ function buyButtonClicked() {
     }
     updatetotal();
 }
+const menuIcon = document.getElementById('menu');
+const navbar = document.querySelector('.navbar');
+
+// Alterna a classe 'active' para mostrar ou esconder o menu
+menuIcon.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+});
