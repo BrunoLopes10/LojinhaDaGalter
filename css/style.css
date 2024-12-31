@@ -300,7 +300,7 @@ a:-webkit-any-link {
 }
 
 @keyframes highlightCart {
-    0% { box-shadow: 0 0 10px 2px #ffa500; }
+    0% { box-shadow: 0 0 10px 2px purple; }
     100% { box-shadow: 0 0 0 0; }
 }
 .purchase-feedback {
