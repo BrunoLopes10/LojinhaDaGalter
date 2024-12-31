@@ -37,7 +37,7 @@ function ready(){
     }
 
     //Adicionar ao carrinho
-    var addCart = document.getElementsByClassName('add-carrinho');
+    var addCart = document.getElementsByClassName('add-to-cart');
         for (var i = 0; i < addCart.length; i++){
             var button = addCart[i]
             button.addEventListener('click', addCartClicked)
@@ -72,15 +72,24 @@ function quantityChanged(event){
 }
 
 //Adicionar ao carrinho
-function addCartClicked(event){
+function addCartClicked(event) {
     var button = event.target;
     var shopProducts = button.parentElement;
-    var title = shopProducts.getElementsByClassName('product-title')[0].innerText;  
+    var title = shopProducts.getElementsByClassName('product-title')[0].innerText;
     var price = shopProducts.getElementsByClassName('price')[0].innerText;
     var productImg = shopProducts.getElementsByClassName('product-img')[0].src;
+
     addProductToCart(title, price, productImg);
     updatetotal();
+
+    // Destaque o carrinho
+    var cart = document.querySelector('.cart');
+    cart.classList.add('active');
+    setTimeout(() => {
+        cart.classList.remove('active');
+    }, 500); // Remova o destaque após 0.5 segundos
 }
+
 
 //Botão de comprar
 function addProductToCart(title, price, productImg){
@@ -90,10 +99,22 @@ function addProductToCart(title, price, productImg){
     var cartItemsNames = cartItems.getElementsByClassName('cart-product-title');
     for (var i = 0; i < cartItemsNames.length; i++){
         if (cartItemsNames[i].innerText == title){
-        alert('Você já adicionou esse item no carrinho');
+        alert('Esse produto já foi adicionado ao carrinho');
         return;
+
     }
 }
+
+//Muda o botão para adicionado
+var button = event.target; 
+    button.textContent = "Adicionado !";
+    button.disabled = true;
+
+    //após 5 segundos o botão volta para adicionar ao carrinho
+    setTimeout(() => {
+        button.textContent = "Adicionar ao Carrinho";
+        button.disabled = false; 
+    }, 3000);
 
 var cartBoxContent = `
                     <img src="${productImg}" alt="" class="cart-img">  
@@ -130,4 +151,23 @@ function updatetotal(){
 
         document.getElementsByClassName('total-price')[0].innerText = 'R$' + total;
     
+}
+function buyButtonClicked() {
+    // Exiba o feedback na tela
+    var feedback = document.createElement('div');
+    feedback.className = 'purchase-feedback';
+    feedback.innerText = 'Seu pedido foi realizado com sucesso!';
+    document.body.appendChild(feedback);
+
+    // Remova o feedback após 3 segundos
+    setTimeout(() => {
+        feedback.remove();
+    }, 3000);
+
+    // Limpe o carrinho
+    var cartContent = document.getElementsByClassName('cart-content')[0];
+    while (cartContent.hasChildNodes()) {
+        cartContent.removeChild(cartContent.firstChild);
+    }
+    updatetotal();
 }

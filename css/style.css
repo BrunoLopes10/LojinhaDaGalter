@@ -91,41 +91,7 @@ color: var(--bg-color);
     align-items: center;
     justify-content: center;
 }
-/*
-.home{
-    position: relative;
-    background: var(--bg-color);
-    min-height: 150px;
-}
 
-.home-img{
-    width: 100%;    
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%);
-    display: flex;
-    justify-content: center;
-}
-
-.home-img img{
-    max-width: 700px;
-    width: 100%;
-    
-}
-
-.home-img::before{
-    content: "Crochê";
-    font-size: 9rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    position: absolute;
-    text-align: center;
-    top: 28px;
-    color: var(--text-color);
-    z-index: -1;
-}
-    */
 /*Carrinho*/
 .cart{
  position:  fixed;
@@ -140,7 +106,7 @@ color: var(--bg-color);
 }
 .cart.active{
     right: 0;
-
+    animation: highlightCart 0.5s ease-in-out;
 }
 .cart-title{
  text-align: center;
@@ -210,7 +176,7 @@ color: var(--bg-color);
 }
 .btn-buy:hover{
     background: var(--text-color);
-}
+} 
 #fechar-carrinho{
     position: absolute;
     top: 1rem;  
@@ -269,7 +235,7 @@ margin-bottom: 0.5rem;
     cursor: pointer;
 }
 .add-carrinho:hover{
-    background: hs1(249,32%,17);
+    background: hsl(249,32%,17%);
 }
 
 /*Responsividade do Site*/
@@ -317,4 +283,42 @@ footer{
 a:-webkit-any-link {
     color: var(--bg-color);
     cursor: pointer;
+}
+.add-to-cart{
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    font-weight: 500;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;  
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+.cart.active {
+    animation: highlightCart 0.5s ease-in-out;
+}
+
+@keyframes highlightCart {
+    0% { box-shadow: 0 0 10px 2px #ffa500; }
+    100% { box-shadow: 0 0 0 0; }
+}
+.purchase-feedback {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-20px); }
 }
