@@ -147,20 +147,29 @@ function updatetotal(){
     var cartContent = document.getElementsByClassName('cart-content')[0];
     var cartBoxes = cartContent.getElementsByClassName('cart-box');
     var total = 0;
-    for (var i = 0; i < cartBoxes.length; i++){
+    var itemCount = 0; // Contador de itens no carrinho
+
+    for (var i = 0; i < cartBoxes.length; i++) {
         var cartBox = cartBoxes[i];
         var priceElement = cartBox.getElementsByClassName('cart-price')[0];
         var quantityElement = cartBox.getElementsByClassName('cart-quantity')[0];
         var price = parseFloat(priceElement.innerText.replace('R$', ""));
         var quantity = quantityElement.value;
-        total = total + price * quantity;
+        total += price * quantity;
+        itemCount += parseInt(quantity); // Contabiliza os itens
     }
-    //Caso o preço tenha centavos
-        total = Math.round(total * 100) / 100;
 
-        document.getElementsByClassName('total-price')[0].innerText = 'R$' + total;
-    
+    // Atualiza a quantidade total de itens no carrinho
+    var itemCountElement = document.querySelector('#carrinho .item-count'); // Supondo que você tenha um elemento com essa classe
+    if (itemCountElement) {
+        itemCountElement.innerText = itemCount; // Atualiza o número de itens no carrinho
+    }
+
+    // Arredonda o total
+    total = Math.round(total * 100) / 100;
+    document.getElementsByClassName('total-price')[0].innerText = 'R$' + total;
 }
+
 function buyButtonClicked() {
     // Exiba o feedback na tela
     var feedback = document.createElement('div');

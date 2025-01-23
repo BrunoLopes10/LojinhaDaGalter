@@ -68,7 +68,7 @@ column-gap: 1rem;
 }
 #carrinho{
 position: relative;
-font-size: 1.8rem;
+font-size: 1.5rem;
 cursor: pointer;
 color: var(--bg-color);
 }
@@ -78,13 +78,13 @@ color: var(--bg-color);
 #carrinho[data-quantity]::after{
     content: attr(data-quantity);
     position: absolute;
-    top: 0;
-    right: -11px;
+    top: -8px;
+    right: -8px;
     width: 20px;
     height: 20px;
     background-color: var(--bg-color);
     border-radius: 50%;
-    color: var(--text-color);
+    color: var(--bg-color);
     font-size: 12px;
     font-weight: 500;
     display: flex;
